@@ -6,6 +6,6 @@
 
 #### JSX语法
 1. 简单的声明一个变量
-```react
+```javascript
 const element = <h1>Hello, world!</h1>;
 ```
