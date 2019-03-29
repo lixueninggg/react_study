@@ -6,6 +6,7 @@
 
 #### JSX语法
 1. 简单的声明一个变量
+
 ```javascript
 const element = <h1>Hello, world!</h1>;
 ```
@@ -35,15 +36,15 @@ ReactDOM.render(
 );
 ```
 
-    当我看到官网此示例中有几个问题
+当我看到官网此示例中有几个问题
 
-    Q1: 为什么 document.getElementById('root')
+Q1: 为什么 document.getElementById('root')
 
-    A1: react和vue都会将DOM渲染到一个根节点下,在官网的后续介绍中也会提到
+A1: react和vue都会将DOM渲染到一个根节点下,在官网的后续介绍中也会提到
 
 3. 判断和循环显示
 
-    条件渲染
+- 条件渲染
 
 > 写页面的时候少不了条件渲染和循环渲染
 
@@ -56,7 +57,7 @@ function getGreeting(user) {
 }
 ```
 
-    循环渲染
+- 循环渲染
 
 > 循环渲染在官网事例中并没有很好的demo, 于是就google了一个比较好的例子
 
@@ -97,7 +98,6 @@ ReactDOM.render(
   document.getElementById('root')
 )
 ```
+注: react和vue的循环渲然都需要key来作为唯一标识去更快的寻找到对应dom
 
-    注: react和vue的循环渲然都需要key来作为唯一标识去更快的寻找到对应dom
-
-    此DEMO摘自 http://huziketang.mangojuice.top/books/react/lesson13
+此DEMO摘自 http://huziketang.mangojuice.top/books/react/lesson13
