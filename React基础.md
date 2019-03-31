@@ -101,3 +101,31 @@ ReactDOM.render(
 注: react和vue的循环渲然都需要key来作为唯一标识去更快的寻找到对应dom
 
 此DEMO摘自 http://huziketang.mangojuice.top/books/react/lesson13
+
+在react中循环渲然使用es6的map方法去生成对应的dom
+
+> class 属性在react中变为 className
+> React.createElement() 为react语法糖
+
+### react 属性
+
+#### Props
+
+> 个人理解: 向组件传递的属性值(和vue的props相似)
+
+```javascript
+// 父组件
+<PropComponent name="姓名" />
+// 子组件
+Class PropComponent extends React.Component {
+  render () {
+    const { name } = this.props
+    <div>
+      姓名: {name}
+    </div>
+  }
+}
+
+export default PropComponent
+```
+
