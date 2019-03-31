@@ -129,3 +129,54 @@ Class PropComponent extends React.Component {
 export default PropComponent
 ```
 
+> props函数式写法
+
+```javascript
+// 父组件
+<PropComponent name="姓名" />
+// 子组件
+const PropComponent = (props) => {
+  render () {
+    const { name } = props
+    <div>
+      姓名: {name}
+    </div>
+  }
+}
+
+export default PropComponent
+```
+> props属性是只读的,无法直接更改如果改变需要通过state来改变
+
+#### State
+
+> state可以使组件内部数据改变 <br />
+this.setState() 是更新state的唯一途径
+
+```javascript
+// 父组件
+<StateComponent />
+// 子组件
+Class StateComponent extends react.componexts {
+  constructor (prop)  {
+    super(prop)
+    this.state = {
+      likes: 0
+    }
+    // 注: 在onClick绑定事件中如果未使用箭头函数需要修正指针
+    // this.clickFn = this.clickFn.bind(this)
+  }
+  clickFn () {
+    this.setState({
+      likes: ++this.likes
+    })
+  }
+  render () {
+    <div>
+      <button type="button" onClick={ () => {this.clickFn()} }>
+      </button>
+    </div>
+  }
+}
+```
+
