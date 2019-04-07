@@ -180,3 +180,108 @@ Class StateComponent extends react.componexts {
 }
 ```
 
+### 生命周期
+
+> 组件初始化 <br /> 组件更新 <br /> 组件卸载
+
+```
+创建时 -> constructor(构造函数|构造器) -> render -> react更新DOM和refs -> componentDidMount
+
+更新时 -> New props 和 set State() 和 force Update() -> react更新DOM和refs -> componentDidUpdate
+
+卸载时 -> componentWillUnmount
+```
+
+```javascript
+// 父组件
+// 子组件
+class DigitalClock extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      date: new Date()
+    }
+  }
+  componentDidMount() {
+    this.timer = steInterval(() => {
+      this.setState({
+        date: new Date()
+      })
+    }, 1000)
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+  componentDidUpdate(currentProps, currentState) {
+    // 检测更新
+    console.log(currentState)
+  }
+  render() {
+    <div>
+      {this.state.date.tolocaleTimeString()}
+    </div>
+  }
+}
+
+export default DigitalClock
+```
+
+
+### 表单forms
+
+> forms(表单) <br /> 表单元素和其他DOM的区别 <br /> Controlled Components - 受控组件
+
+```javascript
+// 受控组件
+class CommentBox extends React.Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleChange (event) {
+    this.setState({
+      value: event.target.value
+    })
+  }
+  handleSubmit(e) {
+    alert(this.state.value)
+    e.preventDefault()
+  }
+  render() {
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <input type='text' onChange={this.handleChange} placeholeder='请输入内容' value={this.state.value}>
+        <button type='submit'>按钮</button>
+      </form>
+    )
+  }
+}
+export default CommentBox
+```
+
+```javascript
+// 非受控组件
+class CommentBox extends React.Component{
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleSubmit(e) {
+    alert(this.textInput.value)
+    e.preventDefault()
+  }
+  render() {
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <input type='text' placeholeder='请输入内容' ref={(textInput) = > { this.textInput = textInput }}>
+        <button type='submit'>按钮</button>
+      </form>
+    )
+  }
+}
+export default CommentBox
+```
