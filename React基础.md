@@ -285,3 +285,88 @@ class CommentBox extends React.Component{
 }
 export default CommentBox
 ```
+
+### Context
+
+> Context提供了数组中共享此类值的方法 <br /> 共享全局组件来说的全局数据
+
+```javascript
+// DEMO主题切换
+// 父组件
+// import  ThemeContext from './theme-context'
+// 引入对应路径的Context
+// import  ThemedBar from './ThemedBar'
+// 引入对应路径的ThemedBar
+const themes = {
+  light: {
+    classnames: 'btn btn-primary',
+    bgColor: '#eee',
+    classnames: '#000',
+  },
+  dark: {
+    classnames: 'btn btn-light',
+    bgColor: '#222',
+    classnames: '#fff',
+  }
+}
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      theme: 'light'
+    }
+  }
+  changeTheme(theme) {
+    this.setState({
+      theme
+    })
+  }
+  rander() {
+    return (
+      <ThemeContext.Provider value={themes.[this.state.theme]}>
+      <div className="App">
+        <header>
+          <h1>主题</h1>
+          <a href="#theme-switcher"
+             onClick = { () => {this.changeTheme('light')} } className="btn btn-light">浅色主题</a>
+          <a href="#theme-switcher"
+             onClick = { () => {this.changeTheme('dark')} } className="btn btn-light">深色主题</a>
+        </header>
+        <ThemedBar />
+      </div>
+      </ThemeContext.Provider>
+    )
+  }
+}
+// context.js
+import React from 'react'
+const ThemeContext = React.createContext()
+export default ThemeContext
+// ThemedBar.js
+import React from 'react'
+import ThemeContext from './theme-context'
+const ThemedBar = () => {
+  return {
+    <ThemeContext.Consumer>
+      {
+        theme => {
+          console.log(them)
+          return (
+            <div
+             className="alter mt-5"
+             style={ {backgeound: theme.bgColor, color: theme.color} }
+            >
+              样式区域
+              <button className={theme.classnames}>
+                样式按钮
+              </button>
+            </div>
+          )
+        }
+      }
+    </ThemeContext.Consumer>
+  }
+}
+export default ThemedBar
+```
